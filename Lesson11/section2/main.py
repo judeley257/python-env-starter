@@ -32,3 +32,28 @@ while play_again=='yes':
     play_again = input("Do you want to play again?: ").lower()
 
 print("Thank you for Playing!")
+import unittest
+from main import rock_paper_scissors
+
+class TestRockPaperScissors(unittest.TestCase):
+
+    def test_win(self):
+        """Test case where the player wins"""
+        self.assertEqual(rock_paper_scissors("rock", "scissors"), "You win!")
+        self.assertEqual(rock_paper_scissors("scissors", "paper"), "You win!")
+        self.assertEqual(rock_paper_scissors("paper", "rock"), "You win!")
+
+    def test_lose(self):
+        """Test case where the player loses"""
+        self.assertEqual(rock_paper_scissors("rock", "paper"), "You lose!")
+        self.assertEqual(rock_paper_scissors("scissors", "rock"), "You lose!")
+        self.assertEqual(rock_paper_scissors("paper", "scissors"), "You lose!")
+
+    def test_tie(self):
+        """Test case where it's a tie"""
+        self.assertEqual(rock_paper_scissors("rock", "rock"), "It's a tie!")
+        self.assertEqual(rock_paper_scissors("paper", "paper"), "It's a tie!")
+        self.assertEqual(rock_paper_scissors("scissors", "scissors"), "It's a tie!")
+
+if __name__ == "__main__":
+    unittest.main()
